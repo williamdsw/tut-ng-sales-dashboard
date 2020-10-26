@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { GoogleChartService } from '../service/google-chart.service';
 
 @Component({
   selector: 'app-pie-chart',
-  templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.css']
+  templateUrl: './pie-chart.component.html'
 })
 export class PieChartComponent implements OnInit {
+
+  @ViewChild ('pieChartContainer', { static: true })
+  private pieChartContainer: ElementRef;
 
   private chartLibrary: any;
 
@@ -17,12 +19,10 @@ export class PieChartComponent implements OnInit {
     this.chartLibrary.charts.setOnLoadCallback (this.drawChart.bind (this));
    }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   private drawChart() {
-    const divPieChart = document.getElementById ('divPieChart');
-    const chart = new this.chartLibrary.visualization.PieChart (divPieChart);
+    const chart = new this.chartLibrary.visualization.PieChart (this.pieChartContainer.nativeElement);
     const data = new this.chartLibrary.visualization.DataTable();
     data.addColumn ('string', 'Accessories');
     data.addColumn ('number', 'Quantity');

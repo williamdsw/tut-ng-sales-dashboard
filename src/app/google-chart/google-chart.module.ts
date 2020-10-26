@@ -7,19 +7,14 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { TableChartComponent } from './table-chart/table-chart.component';
 
+const COMPONENTS = [LineChartComponent, PieChartComponent, TableChartComponent];
+
 @NgModule({
-  declarations: [
-    LineChartComponent,
-    PieChartComponent,
-    TableChartComponent
-  ],
+  declarations: [COMPONENTS],
   imports: [
     CommonModule,
     ServiceModule
   ],
-  exports: [LineChartComponent,
-    PieChartComponent,
-    TableChartComponent
-  ]
+  exports: [COMPONENTS]
 })
 export class GoogleChartModule { }
